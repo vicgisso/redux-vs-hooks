@@ -1,24 +1,32 @@
 import React from 'react';
+import { connect } from 'react-redux';
+import * as actions from './redux/actions';
 
-const Display = ({ counter }) => <h1>Valor del contador: {counter}</h1>;
+// const Display = ({ counter }) => <h1>Valor del contador: {counter}</h1>;
 
-const Increment = ({ addToCounter }) => (  
-  <button onClick={() => addToCounter(1)}>Sumar 1</button>
-); 
-const Decrement = ({ addToCounter }) => (  
-  <button onClick={() => addToCounter(-1)}>Restar 1</button>
-); 
+// const Increment = ({ increment }) => (  
+//   <button onClick={() => increment()}>Sumar 1</button>
+// ); 
+// const Decrement = ({ decrement }) => (  
+//   <button onClick={() => decrement()}>Restar 1</button>
+// ); 
 
-const App = () => {  
-  const [counter, setCounter] = React.useState(0);  
-  const addToCounter = value => setCounter(counter + value);  
+const App = ({ count, increment, decrement }) => {  
   return (    
     <>         
-      <Display counter={counter} />      
-      <Increment addToCounter={addToCounter} />      
-      <Decrement addToCounter={addToCounter} />    
+      <h1>Valor del contador: {count}</h1>     
+      <button onClick={() => {console.log('increment');increment();}}>Sumar 1</button>     
+      <button onClick={() => {console.log('decrement');decrement();}}>Restar 1</button> 
     </>  
   );
 }; 
 
-export default App;
+export default connect(
+  store => ({
+    count: store.count
+  }),
+  {
+    increment: actions.increment, 
+    decrement: actions.decrement
+  }
+)(App);
