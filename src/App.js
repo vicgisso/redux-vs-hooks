@@ -13,8 +13,7 @@ const App = () => {
   const [counter, setCounter] = React.useState(0);  
   const addToCounter = value => setCounter(counter + value);  
   return (    
-    <>      
-      <h1>useReducer</h1>      
+    <>         
       <Display counter={counter} />      
       <Increment addToCounter={addToCounter} />      
       <Decrement addToCounter={addToCounter} />    
