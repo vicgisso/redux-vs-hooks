@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+const Display = ({ counter }) => <h1>Valor del contador: {counter}</h1>;
+
+const Increment = ({ addToCounter }) => (  
+  <button onClick={() => addToCounter(1)}>Sumar 1</button>
+); 
+const Decrement = ({ addToCounter }) => (  
+  <button onClick={() => addToCounter(-1)}>Restar 1</button>
+); 
+
+const App = () => {  
+  const [counter, setCounter] = React.useState(0);  
+  const addToCounter = value => setCounter(counter + value);  
+  return (    
+    <>      
+      <h1>useReducer</h1>      
+      <Display counter={counter} />      
+      <Increment addToCounter={addToCounter} />      
+      <Decrement addToCounter={addToCounter} />    
+    </>  
   );
-}
+}; 
 
 export default App;
